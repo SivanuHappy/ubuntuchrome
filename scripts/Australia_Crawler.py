@@ -1,10 +1,12 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
-driver = webdriver.Chrome('./chromedriver')
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(100)
 driver.get("https://www.health.gov.au/health-alerts/covid-19/case-numbers-and-statistics")
 WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.ID, "widgetgjjZnj")))
